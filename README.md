@@ -98,13 +98,33 @@ vim ~/.claude/settings.json
 
 ```json
 {
-  "hooks": {
+    "hooks": {
     "UserPromptSubmit": [
       {
         "hooks": [
           {
             "type": "command",
             "command": "powershell -Command \"Invoke-RestMethod -Uri http://127.0.0.1:8765 -Method POST -ContentType 'application/json' -Body '{\\\"event\\\":\\\"UserPromptSubmit\\\"}'\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -Command \"Invoke-RestMethod -Uri http://127.0.0.1:8765 -Method POST -ContentType 'application/json' -Body '{\\\"event\\\":\\\"PreToolUse\\\"}'\""
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -Command \"Invoke-RestMethod -Uri http://127.0.0.1:8765 -Method POST -ContentType 'application/json' -Body '{\\\"event\\\":\\\"AwaitingUserConfirmation\\\"}'\""
           }
         ]
       }
@@ -129,8 +149,19 @@ vim ~/.claude/settings.json
           }
         ]
       }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -Command \"Invoke-RestMethod -Uri http://127.0.0.1:8765 -Method POST -ContentType 'application/json' -Body '{\\\"event\\\":\\\"Notification\\\"}'\""
+          }
+        ]
+      }
     ]
-  }
+  
+}
 }
 ```
 
